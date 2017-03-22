@@ -17,30 +17,43 @@ def int_if_possible(string):
 def add_recipe(original_book):
     title = input('Title: ')
     working_book = original_book
-    working_book[title] = []
+    working_recipe = {}
+    working_book[title] = {}
 
     #!!Ingredient Loop!!#
     # When state == False, user is done inputting ingredients
     state = True
+    count = 1
+
     while state == True:
+        recipe_line = {}
+
         ingredient = input('''Add Ingredients...
 
-        Enter n to finish adding ingredients.
+        Enter an ingredient or type 'n' to finish adding ingredients.
         >    ''')
 
+        ## Loop break here.
         if ingredient == 'n':
             state = False
-            return(recipe)
+            working_book[title] = working_recipe
+            return(working_book)
 
         amount = input('Amount: ')
         amount = int_if_possible(amount)
 
         unit = input('Units: ')
+        recipe_line[ingredient] = [amount, unit]
 
-        recipe = "In the middle."
+        #recipe_line.append(amount)
+        #recipe_line.append(unit)
+        #recipe_line.append(ingredient)
 
+        working_recipe[ingredient] = recipe_line[ingredient]
+        print(recipe_line)
+        print(working_recipe)
+        count += 1
 
-    return(recipe)
 
 operation = int(input('''Press 1 to add recipe:
 >   '''))
@@ -49,7 +62,10 @@ book = {}
 if operation == 1:
     recipe_ret = add_recipe(book)
     print(recipe_ret)
+    #x = input('> ')
 
+    #if x == 'test':
+    #    print(recipe_ret)
 
 
 
