@@ -3,20 +3,30 @@
 def int_if_possible(string):
     try:
         return(int(string))
-    except Exception as exc:
-        print('Could not convert amount to integer. Returning float.')
-        return(float(string))
+    except:
+        try:
+            print('Could not convert amount to integer. Returning float.')
+            return(float(string))
+        except Exception as exc:
+            print('Could not convert input to integer or float. Please enter a number.')
+            return(string)
 # First he builds his recipe book by adding each of his drink recipes to his
 # Database of products.
 
 ## He starts a new recipe by pressing the 'add recipe' button.
 def add_recipe(original_book):
     title = input('Title: ')
-    original_book[title] = []
+    working_book = original_book
+    working_book[title] = []
 
+    #!!Ingredient Loop!!#
+    # When state == False, user is done inputting ingredients
     state = True
     while state == True:
-        ingredient = input('Enter an ingredient for the recipe: ')
+        ingredient = input('''Add Ingredients...
+
+        Enter n to finish adding ingredients.
+        >    ''')
 
         if ingredient == 'n':
             state = False
