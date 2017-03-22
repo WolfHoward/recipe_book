@@ -1,12 +1,18 @@
 # Wolf wants to build a recipe book that will tell him how much it costs him
 # to produce an infusion given the ingredients and amounts used
-
+def int_if_possible(string):
+    try:
+        return(int(string))
+    except Exception as exc:
+        print('Could not convert amount to integer. Returning float.')
+        return(float(string))
 # First he builds his recipe book by adding each of his drink recipes to his
 # Database of products.
 
 ## He starts a new recipe by pressing the 'add recipe' button.
-def add_recipe():
+def add_recipe(original_book):
     title = input('Title: ')
+    original_book[title] = []
 
     state = True
     while state == True:
@@ -17,17 +23,21 @@ def add_recipe():
             return(recipe)
 
         amount = input('Amount: ')
+        amount = int_if_possible(amount)
+
         unit = input('Units: ')
+
         recipe = "In the middle."
 
-    recipe = "What's a testing goat?"
+
     return(recipe)
 
 operation = int(input('''Press 1 to add recipe:
 >   '''))
 
+book = {}
 if operation == 1:
-    recipe_ret = add_recipe()
+    recipe_ret = add_recipe(book)
     print(recipe_ret)
 
 
